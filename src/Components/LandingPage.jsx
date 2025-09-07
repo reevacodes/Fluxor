@@ -1,12 +1,10 @@
 // src/components/LandingPage.jsx
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 
 const LandingPage = ({ onGetStarted }) => {
   const [displayText, setDisplayText] = useState("");
-  const [isTyping, setIsTyping] = useState(true);
-
   const fullText = "Overspent? Don’t worry, we’ve scheduled your overtime.";
 
   const particlesInit = useCallback(async (engine) => {
@@ -22,12 +20,12 @@ const LandingPage = ({ onGetStarted }) => {
     let i = 0;
     const interval = setInterval(() => {
       if (i < fullText.length) {
-        setDisplayText(fullText.slice(0, i + 1)); // safe slicing
+        setDisplayText(fullText.slice(0, i + 1)); // safe slice
         i++;
       } else {
         clearInterval(interval);
       }
-    }, 50);
+    }, 50); // typing speed in ms
 
     return () => clearInterval(interval);
   }, []);
@@ -50,7 +48,7 @@ const LandingPage = ({ onGetStarted }) => {
             },
             modes: {
               push: { quantity: 4 },
-              repulse: { distance: 200, duration: 0.4 },
+              repulse: { distance: 100, duration: 0.4 },
             },
           },
           particles: {
@@ -59,7 +57,7 @@ const LandingPage = ({ onGetStarted }) => {
               color: "#ffffff",
               distance: 150,
               enable: true,
-              opacity: 0.5,
+              opacity: 1,
               width: 1,
             },
             collisions: { enable: true },
@@ -71,7 +69,7 @@ const LandingPage = ({ onGetStarted }) => {
               speed: 1,
               straight: false,
             },
-            number: { density: { enable: true, area: 800 }, value: 80 },
+            number: { density: { enable: true, area: 800 }, value: 120 },
             opacity: { value: 0.5 },
             shape: { type: "circle" },
             size: { value: { min: 1, max: 5 } },
@@ -83,19 +81,22 @@ const LandingPage = ({ onGetStarted }) => {
 
       {/* Hero content */}
       <div className="relative z-10 text-center max-w-2xl mx-auto">
-        <h1 className="text-6xl font-extrabold tracking-tight mb-4 animate-fade-in-down">
+        <h1 className="text-4xl sm:text-6xl md:text-6xl font-extrabold tracking-tight mb-3 animate-fade-in-down">
           Fluxer
         </h1>
 
         {/* First line */}
-        <p className="text-xl text-gray-400 mb-2 animate-fade-in">
+        <p className="text-xl text-gray-400 mb-10 animate-fade-in font-bold">
           Turning guilt into productivity.
         </p>
 
         {/* Typewriter second line */}
-        <p className="text-lg text-gray-400 mb-8 animate-fade-in">
+        <p
+          className="text-lg text-gray-400 mb-3 animate-fade-in"
+          aria-live="polite"
+        >
           {displayText}
-          <span className="blinking-cursor">{isTyping ? "|" : ""}</span>
+          <span className="blinking-cursor">|</span>
         </p>
 
         <button
@@ -107,9 +108,9 @@ const LandingPage = ({ onGetStarted }) => {
       </div>
 
       {/* Footer */}
-      <footer className="absolute bottom-4 text-sm text-gray-500 z-10">
+      {/* <footer className="absolute bottom-4 text-sm text-gray-500 z-10">
         © 2025 Fluxer. All rights reserved.
-      </footer>
+      </footer> */}
 
       {/* Blinking cursor style */}
       <style>
