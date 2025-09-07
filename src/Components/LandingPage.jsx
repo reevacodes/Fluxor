@@ -69,7 +69,7 @@ const LandingPage = ({ onGetStarted }) => {
               speed: 1,
               straight: false,
             },
-            number: { density: { enable: true, area: 800 }, value: 120 },
+            number: { density: { enable: true, area: 800 }, value: 100 },
             opacity: { value: 0.5 },
             shape: { type: "circle" },
             size: { value: { min: 1, max: 5 } },
@@ -82,7 +82,7 @@ const LandingPage = ({ onGetStarted }) => {
       {/* Hero content */}
       <div className="relative z-10 text-center max-w-2xl mx-auto">
         <h1 className="text-4xl sm:text-6xl md:text-6xl font-extrabold tracking-tight mb-3 animate-fade-in-down">
-          Fluxer
+          Welcome To Fluxer!
         </h1>
 
         {/* First line */}
